@@ -19,3 +19,4 @@ Integral: The integral component adjusts the orientation of the rocket based on 
 
 Derivative: The derivative component adjusts the orientation of the rocket based on the rate of change of the error between the current orientation and the desired orientation.
 By using two separate PID control loops, the TVC system is able to independently adjust the orientation of the rocket in both the x-direction and the y-direction, by using two servos which gimbal the motor mount.
+<img width="719" height="764" alt="Screenshot 2026-06-12 at 11 12 41" src="https://github.com/user-attachments/assets/6c0cb8ec-5970-47ca-8978-2289624b106c" />
