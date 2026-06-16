@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HBRC Rocketry — Mira Costa Aerospace Club</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: calc(90vh - 68px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .hero-text { padding: 6rem 5%; animation: fadeUp 0.8s ease both; }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
+
+    .hero h1 { font-size: clamp(2.8rem, 5.5vw, 5rem); line-height: 1.05; margin-bottom: 1.5rem; }
+    .hero h1 em { font-style: italic; color: var(--accent2); }
+
+    .hero-desc { color: var(--ink-mid); font-size: 1rem; font-style: italic; max-width: 400px; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-image {
+      height: calc(90vh - 68px);
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--stone);
+      font-size: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-image p { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); }
+
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+    /* ── Stats ── */
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--sand); border-bottom: 1px solid var(--sand); }
+
+    .stat { padding: 2.2rem 5%; border-right: 1px solid var(--sand); }
+    .stat:last-child { border-right: none; }
+
+    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; line-height: 1; margin-bottom: 0.2rem; }
+    .stat-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); }
+
+    /* ── Features grid ── */
+    .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--sand); }
+    .feature { padding: 2.2rem; border-right: 1px solid var(--sand); border-bottom: 1px solid var(--sand); transition: background 0.2s; }
+    .feature:hover { background: var(--cream); }
+    .feature:nth-child(3n) { border-right: none; }
+    .feature:nth-child(n+4) { border-bottom: none; }
+    .feature-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+    .feature h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .feature p { font-size: 0.86rem; color: var(--ink-mid); }
+
+    /* ── Cert table ── */
+    .cert-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .cert-table th { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--sand); }
+    .cert-table td { padding: 1rem; border-bottom: 1px solid var(--cream); color: var(--ink-mid); }
+    .cert-table tr:last-child td { border-bottom: none; }
+    .cert-table tr:hover td { background: var(--cream); }
+
+    .cert-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; border: 1px solid; }
+    .cert-l1 { color: #2c5f8a; border-color: #2c5f8a; }
+    .cert-l2 { color: #b8860b; border-color: #b8860b; }
+    .cert-l3 { color: var(--accent); border-color: var(--accent); }
+
+    /* ── CTA strip ── */
+    .cta-strip { background: var(--ink); color: var(--white); padding: 4.5rem 5%; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .cta-strip h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); max-width: 480px; }
+    .cta-strip h2 em { font-style: italic; color: var(--stone); }
+    .btn-light { background: var(--white); color: var(--ink); border: 1px solid var(--white); }
+    .btn-light:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { display: none; }
+      .stats-bar { grid-template-columns: repeat(2,1fr); }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PARENT BREADCRUMB -->
+  <div class="parent-bar">
+    <a href="../index.html">🛸 Mira Costa Aerospace Club</a>
+    <span class="sep">/</span>
+    <span>Hermosa Rocketry Division</span>
+  </div>
+
+ <nav>
+  <a href="../index.html" class="nav-logo">🚀 HBRC</a>
+  <ul class="nav-links">
+    <li><a href="../index.html" class="nav-cta">← Return to Mira Costa Aerospace</a></li>
+  </ul>
+</nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">MCAC Rocketry Division · Est. 2025</div>
+      <h1>We Build.<br><em>We Launch.</em><br>We Soar.</h1>
+      <p class="hero-desc">
+        This is the Hermosa Beach Rocketry Club- In Partnership with the Mira Costa Aerospace Club, to bring model rocketry to students of Hermosa Beach schools.
+      </p>
+      <div class="hero-actions">
+        <a href="../contact.html" class="btn btn-primary">Join the team →</a>
+      </div>
+    </div>
+    <div class="hero-image">
+  <img src="../images/IMG_5955.png" style="width:100%; height:100%; object-fit:cover;">
+</div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-number">2025</div><div class="stat-label">HBRC founded</div></div>
+    <div class="stat"><div class="stat-number">50+</div><div class="stat-label">HBRC members</div></div>
+    <div class="stat"><div class="stat-number">2</div><div class="stat-label">Annual launches</div></div>
+    <div class="stat"><div class="stat-number">3<span style="font-size:1.2rem">ft</span></div><div class="stat-label">Mentors</div></div>
+  </div>
+
+  <!-- ABOUT THE PARTNERSHIP -->
+  <section class="section">
+    <div class="section-label">Partnership</div>
+    <h2 class="section-title">MCAC + HBRC</h2>
+    <p class="section-subtitle">How our rocketry division works.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div style="font-size:1.6rem; margin-bottom:0.8rem;">🤝</div>
+        <h3>Community partnership</h3>
+        <p>MCAC's rocketry division operates in close partnership with the Hermosa Beach Rocketry Club, giving students access to mentors, lessons, and step by step guidance through the design process.
+      </div>
+      <div class="card">
+        <div style="font-size:1.6rem; margin-bottom:0.8rem;">🏜️</div>
+        <h3>Real launch days</h3>
+        <p>Hermosa Beach Rocketry students attend launch days in Palm Springs, CA where their work will culminate in a final launch demonstration.</p>
+      </div>
+      <div class="card">
+        <div style="font-size:1.6rem; margin-bottom:0.8rem;">🎓</div>
+        <h3>Mentorship pipeline</h3>
+        <p>HBRC members mentor MCAC students through the entire build process — from OpenRocket simulation to 3d printing to launch day. </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="section section-alt">
+    <div class="section-label">Activities</div>
+    <h2 class="section-title">What rocketry members do</h2>
+    <div class="features-grid">
+      <div class="feature"><div class="feature-icon">🛠️</div><h3>Build workshops</h3><p>Weekly meetings Airframe construction, fin alignment, and recovery systems.</p></div>
+      <div class="feature"><div class="feature-icon">📐</div><h3>Flight simulation</h3><p>OpenRocket simulations to design and optimize flights before launch day.</p></div>
+      <div class="feature"><div class="feature-icon">🏜️</div><h3>Launch days</h3><p>Regular launches in Palm Springs with MCAC mentors</p></div>
+      <div class="feature"><div class="feature-icon">🔬</div><h3>Electronics</h3><p>Dual-deployment altimeters, GPS trackers, and custom PCB design teach students real-world skills.</p></div>
+    </div>
+  </section>
+
+  <hr />
+
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <h2>Ready to <em>light the fuse?</em></h2>
+    <a href="../contact.html" class="btn btn-light">Join MCAC →</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">🚀 HBRC Rocketry Division</div>
+        <div class="footer-tagline">Part of the Mira Costa Aerospace Club</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../index.html">← Back to MCAC</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">© 2025 Mira Costa Aerospace Club · HBRC Rocketry Division · All rights reserved</div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Mira Costa Aerospace Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #080810;
+      --bg2:     #0f0f1a;
+      --bg3:     #16162a;
+      --border:  rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.14);
+      --text:    #f0f0f5;
+      --mid:     #9090a8;
+      --dim:     #54546e;
+      --blue:    #4f8ff7;
+      --blue2:   #a5c4ff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Figtree', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 52px;
+      background: rgba(8,8,16,0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+    }
+
+    .nav-logo { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; color: var(--text); margin-right: auto; }
+    .nav-links { display: flex; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 400; color: var(--mid); padding: 0 12px; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-join { color: var(--blue) !important; font-weight: 500 !important; }
+
+    .page-header { padding:120px 5% 4rem; text-align:center; }
+    .page-header h1 { font-size:clamp(2.4rem,5vw,4rem); font-weight:800; letter-spacing:-0.04em; line-height:1.05; margin-bottom:1rem; }
+    .page-header p { font-size:1rem; color:var(--mid); line-height:1.7; max-width:580px; margin:0 auto; }
+    .label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:0.8rem; }
+    hr.rule { border:none; border-top:1px solid var(--border); }
+    .wrap { max-width:1060px; margin:0 auto; padding:0 5%; }
+    .pad { padding:5rem 0; }
+    .heading { font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:700; letter-spacing:-0.03em; line-height:1.1; margin-bottom:0.8rem; }
+    .subtext { font-size:0.93rem; color:var(--mid); line-height:1.7; max-width:500px; margin-bottom:2.5rem; }
+    .btn-blue { display:inline-flex; align-items:center; background:var(--blue); color:#fff; padding:0.7rem 1.6rem; border-radius:100px; font-size:0.88rem; font-weight:600; transition:all 0.2s; }
+    .btn-blue:hover { background:#3a78e8; transform:translateY(-1px); }
+    .btn-ghost { display:inline-flex; align-items:center; background:transparent; color:var(--mid); padding:0.7rem 1.6rem; border-radius:100px; font-size:0.88rem; font-weight:500; border:1px solid var(--border2); transition:all 0.2s; }
+    .btn-ghost:hover { color:var(--text); border-color:rgba(255,255,255,0.3); }
+    .lnk { font-size:0.85rem; font-weight:600; color:var(--blue); display:inline-flex; align-items:center; gap:0.2rem; transition:gap 0.15s; }
+    .lnk:hover { gap:0.5rem; }
+    .lnk::after { content:"→"; }
+    footer { background:var(--bg2); border-top:1px solid var(--border); padding:3rem 5%; margin-top:5rem; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; padding-bottom:2rem; border-bottom:1px solid var(--border); margin-bottom:1.5rem; }
+    .footer-brand { font-size:0.92rem; font-weight:700; margin-bottom:0.5rem; }
+    .footer-tagline { font-size:0.78rem; color:var(--dim); line-height:1.7; }
+    .footer-col h5 { font-size:0.7rem; font-weight:600; margin-bottom:0.8rem; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:0.45rem; }
+    .footer-col ul a { font-size:0.75rem; color:var(--dim); transition:color 0.15s; }
+    .footer-col ul a:hover { color:var(--mid); }
+    .footer-btm { font-size:0.68rem; color:var(--dim); }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.65s ease,transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @media (max-width:860px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px) { .nav-links { display:none; } }
+
+    .filter-bar { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+    .fbtn { font-size:0.78rem; font-weight:500; padding:0.4rem 1rem; border:1px solid var(--border); background:transparent; color:var(--mid); border-radius:100px; cursor:pointer; transition:all 0.15s; font-family:"Figtree",sans-serif; }
+    .fbtn:hover, .fbtn.active { background:var(--blue); color:#fff; border-color:var(--blue); }
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px; }
+    .proj-card { background:var(--bg2); border:1px solid var(--border); border-radius:20px; overflow:hidden; transition:border-color 0.2s,transform 0.2s; }
+    .proj-card:hover { border-color:var(--border2); transform:translateY(-3px); }
+    .proj-thumb { background:var(--bg3); height:160px; display:flex; align-items:center; justify-content:center; font-size:3.5rem; border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+
+    /* ── IMAGE SUPPORT ── */
+    .proj-thumb img { width:100%; height:100%; object-fit:cover; }
+
+    .proj-status { position:absolute; top:0.8rem; right:0.8rem; font-family:"JetBrains Mono",monospace; font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.2rem 0.55rem; border-radius:6px; border:1px solid; }
+    .s-done { color:#34d399; border-color:#34d399; background:rgba(52,211,153,0.08); }
+    .s-progress { color:#f59e0b; border-color:#f59e0b; background:rgba(245,158,11,0.08); }
+    .proj-body { padding:1.6rem; }
+    .proj-div { font-size:0.65rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue); margin-bottom:0.4rem; }
+    .proj-card h3 { font-size:1.02rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:0.5rem; }
+    .proj-card p { font-size:0.85rem; color:var(--mid); line-height:1.6; margin-bottom:1.2rem; }
+    .tags { display:flex; flex-wrap:wrap; gap:0.35rem; }
+    .tag { font-family:"JetBrains Mono",monospace; font-size:0.6rem; padding:0.18rem 0.55rem; background:var(--bg3); border:1px solid var(--border); border-radius:5px; color:var(--dim); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">AEC</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="presentations.html">Presentations</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="rocketry/index.html">Hermosa Beach Rocketry</a></li>
+      <li><a href="contact.html" class="nav-join">Join Us</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header reveal">
+    <div class="label">Our work</div>
+    <h1>Projects</h1>
+    <p>Four completed projects across our rocketry and simulation divisions.</p>
+  </div>
+
+  <hr class="rule" />
+
+  <div class="wrap pad reveal">
+    <div class="projects-grid">
+
+      <!-- CARD 1 — replace "YOUR-IMAGE-NAME.jpg" with your actual filename -->
+      <div class="proj-card">
+        <div class="proj-thumb">
+          <img src="images/strata2.png" alt="ARC STRATA II Rocket">
+          <span class="proj-status s-done">Complete</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-div">Rocketry</div>
+          <h3>ARC STRATA II Rocket</h3>
+          <p>Enhanced the self-guided canard system by implementing a more reliable parachute deployment mechanism and designing improved structural protection for the internal payload and flight electronics.</p>
+          <div class="tags"><span class="tag">TARC</span><span class="tag">2025</span><span class="tag">Competition Team</span></div>
+        </div>
+      </div>
+
+      <!-- CARD 2 — replace "YOUR-IMAGE-NAME.jpg" with your actual filename -->
+      <div class="proj-card">
+        <div class="proj-thumb">
+          <img src="images/orignal.jpeg" alt="Custom Flight Computer">
+          <span class="proj-status s-progress">In Progress</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-div">Electronics</div>
+          <h3>Custom Flight Computer</h3>
+          <p>Developing a flight computer powered by a Pico 2 to plot altimeter and velocity for 2026 rocket.</p>
+          <div class="tags"><span class="tag">NRC</span><span class="tag">Custom Electronics</span><span class="tag">Altimeter</span></div>
+        </div>
+      </div>
+
+      <!-- CARD 3 — replace "YOUR-IMAGE-NAME.jpg" with your actual filename -->
+      <div class="proj-card">
+        <div class="proj-thumb">
+          <img src="images/hello.png" alt="2026 STRATA III">
+          <span class="proj-status s-progress">In Progress</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-div">Rocketry</div>
+          <h3>2026 STRATA III</h3>
+          <p>Developing a rocket for the 2026 ARC and NRC competitions to target altitude of 800ft and flight duration of 40 sec.</p>
+          <div class="tags"><span class="tag">TARC</span><span class="tag">NRC</span><span class="tag">Rocket</span></div>
+        </div>
+      </div>
+
+      <!-- CARD 4 — emoji placeholder, no image yet -->
+      <div class="proj-card">
+        <div class="proj-thumb">
+          📐
+          <span class="proj-status s-done">Complete</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-div">Simulation &amp; CAD</div>
+          <h3>[Project Name]</h3>
+          <p>Update with what you designed, tools used, and how it connected to a real build.</p>
+          <div class="tags"><span class="tag">CAD</span><span class="tag">Structural</span><span class="tag">Fin design</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand">AEC</div><div class="footer-tagline">Mira Costa Aerospace Club<br>Mira Costa High School · Manhattan Beach, CA<br>Partner org: Hermosa Beach Rocketry Club</div></div>
+      <div class="footer-col"><h5>Club</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Join Us</a></li></ul></div>
+      <div class="footer-col"><h5>Work</h5><ul><li><a href="projects.html">Projects</a></li><li><a href="presentations.html">Presentations</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+      <div class="footer-col"><h5>Divisions</h5><ul><li><a href="rocketry/index.html">🚀 HBRC Rocketry</a></li><li><a href="projects.html">📐 Simulation &amp; CAD</a></li><li><a href="#">TARC</a></li><li><a href="#">NRC</a></li></ul></div>
+    </div>
+    <div class="footer-btm">© 2025 Mira Costa Aerospace Club · All rights reserved</div>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".fbtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".fbtn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
